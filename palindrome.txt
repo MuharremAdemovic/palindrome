@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void reverseStr(char *, int, int);
+int isPalindrome(char *, int, int);
+
+
+
+int main()
+{
+	char *str = malloc(100 * sizeof(char));
+	do{
+		printf("\n enter a string to reverse: ");
+		fgets(str,100, stdin);
+		int strL = strlen(str);
+		str[strL - 1] = '\0';
+		printf("%s is %s", str,isPalindrome(str, 0, strlen(str)-1) == 1 ? " a palindrome" : "not a palindrome");
+	}while(1);
+      retur 0;
+}
+
+
+void reverseStr(char * str, int start, int end)
+{
+	if( start < end)
+	{
+		char temp = str[start];
+		str[start] = str[end];
+		str[end]   =  temp;
+		reverseStr(str, start + 1, end - 1);
+	}
+}
+
+int isPalindrome(char * str, int start, int end)
+{
+	if(start < end)
+	{
+		if(str[start] == str[end])
+		{
+			return isPalindrome(str, start + 1,end-1);//rec calls.
+		}
+		else
+		{
+			return 0;//stop if it is not a palindrome.
+		}
+	}
+	return 1;//stop if it is a palindrome.
+}
